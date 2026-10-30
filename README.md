@@ -98,10 +98,10 @@ The CSV output can be imported into Excel, LibreOffice, or other data-analysis t
 
 ## Understanding DNSSEC Results
 
+- **Signed, No DS:** Domain owner has signed the record, but ccTLD manager did not publish their DS.
+- **Signed:** DNSSEC-related signing records were detected for the domain according to the script's checks.
 - **NXDomain:** Domain doesn't exist.
 - **Unreachable:** Domain not reachable (network issue, or domain is down).
-- **Signed:** DNSSEC-related signing records were detected for the domain according to the script's checks.
-- **Signed, No DS:** Domain owner has signed the record, but ccTLD manager did not publish their DS.
 - **Not Signed:** The script did not detect the expected DNSSEC signing records.
 
 **Important:** DNSSEC chain of trust.
