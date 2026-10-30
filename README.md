@@ -23,12 +23,11 @@ The primary objectives of this project are to:
 
 ## Repository Structure
 
-The repository contains a single Python script:
-
 ```text
 .
-└── dnssec-bulk-check.py
-├── pk-50k.txt
+├── dnssec_check.py
+├── test_dnssec_check.py
+└── pk-50k.txt
 ```
 
 ## Requirements
@@ -42,8 +41,8 @@ The repository contains a single Python script:
 **1. Clone the repository**
 
 ```bash
-git clone https://github.com/<username>/<repository>.git
-cd <repository>
+git clone https://github.com/eunomate/pkcctld.git
+cd pkcctld
 ```
 
 **2. Install the required Python dependency**
@@ -75,7 +74,7 @@ You can provide any number of domains in the input file, subject to DNS query an
 Run the program using Python:
 
 ```bash
-python dnssec-bulk-check.py pk-50k.txt results.csv
+python dnssec_check.py pk-50k.txt --out results.csv
 ```
 
 Where:
@@ -88,21 +87,24 @@ The program generates a CSV file containing the DNSSEC signing check results for
 
 Example:
 
-| Domain | DNSSEC Status |
-|---|---|
-| ecp.gov.pk | Signed, No DS  |
-| newspak.pk | Not Signed |
-| pcb.gov.pk | Unreachable |
+| domain | status | ds | dnskey_alg |
+|---|---|---|---|
+| ecp.gov.pk | signed_no_ds | | 8 |
+| newspak.pk | secure | 13/2 | 13 |
+| pcb.gov.pk | unreachable | | |
 
 The CSV output can be imported into Excel, LibreOffice, or other data-analysis tools to calculate DNSSEC adoption statistics.
 
 ## Understanding DNSSEC Results
 
-- **Signed, No DS:** Domain owner has signed the record, but ccTLD manager did not publish their DS.
-- **Signed:** DNSSEC-related signing records were detected for the domain according to the script's checks.
-- **NXDomain:** Domain doesn't exist.
-- **Unreachable:** Domain not reachable (network issue, or domain is down).
-- **Not Signed:** The script did not detect the expected DNSSEC signing records.
+- **secure:** Domain is signed, its DS is published in .pk, and the chain validates.
+- **bogus:** DS is published in .pk, but validation fails.
+- **signed_no_ds:** Domain owner has signed the zone, but ccTLD manager did not publish their DS.
+- **ds_no_dnskey:** DS is published in .pk, but the domain serves no DNSKEY (broken).
+- **unsigned:** The script did not detect any DNSSEC signing records.
+- **nxdomain:** Domain doesn't exist in .pk.
+- **unreachable:** Domain is registered, but its nameservers do not answer.
+- **error:** No reply after retries; re-run or lower `-c`.
 
 **Important:** DNSSEC chain of trust.
 
