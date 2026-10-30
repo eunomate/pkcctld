@@ -90,10 +90,9 @@ Example:
 
 | Domain | DNSSEC Status |
 |---|---|
-| example.pk | Signed |
-| example.com.pk | Not Signed |
-| example.org.pk | Signed |
-| example.net.pk | Not Signed |
+| ecp.gov.pk | Signed, No DS  |
+| newspak.pk | Not Signed |
+| pcb.gov.pk | Unreachable |
 
 The CSV output can be imported into Excel, LibreOffice, or other data-analysis tools to calculate DNSSEC adoption statistics.
 
@@ -102,7 +101,7 @@ The CSV output can be imported into Excel, LibreOffice, or other data-analysis t
 - **NXDomain:** Domain doesn't exist.
 - **Unreachable:** Domain not reachable (network issue, or domain is down).
 - **Signed:** DNSSEC-related signing records were detected for the domain according to the script's checks.
-- **Signed No DS:** Domain owner has signed the record, but ccTLD manager did not publish their DS.
+- **Signed, No DS:** Domain owner has signed the record, but ccTLD manager did not publish their DS.
 - **Not Signed:** The script did not detect the expected DNSSEC signing records.
 
 **Important:** DNSSEC chain of trust.
