@@ -1,10 +1,8 @@
 # PK ccTLD DNSSEC Bulk Signing Checker
 
- ____  _  __      ____ ____ _____ _     ____  
-|  _ \| |/ /     / ___/ ___|_   _| |   |  _ \ 
-| |_) | ' /_____| |  | |     | | | |   | | | |
-|  __/| . \_____| |__| |___  | | | |___| |_| |
-|_|   |_|\_\     \____\____| |_| |_____|____/
+<div align="center">
+<img src="pk-cctld-dnssec.png" alt="PK ccTLD DNSSEC Bulk Signing Checker" width="650">
+</div?
 
 A lightweight Python utility to assess DNSSEC deployment across domains registered under Pakistan's country-code Top-Level Domain (**.pk**).
 
