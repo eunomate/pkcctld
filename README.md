@@ -2,7 +2,7 @@
 
 <div align="center">
 <img src="pk-cctld-dnssec.png" alt="PK ccTLD DNSSEC Bulk Signing Checker" width="650">
-</div?
+</div>
 
 A lightweight Python utility to assess DNSSEC deployment across domains registered under Pakistan's country-code Top-Level Domain (**.pk**).
 
